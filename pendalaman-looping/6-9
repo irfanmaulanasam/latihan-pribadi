@@ -1,0 +1,754 @@
+
+// Diberikan sebuah function digitPerkalianMinimum(angka) yang menerima satu parameter angka. Function akan mengembalikan jumlah digit minimal dari angka yang merupakan faktor angka parameter tersebut, Contoh, jika angka adalah 24, maka faktornya adalah 1 * 24, 2 * 12, 3 * 8, dan 4 * 6. Dari antara faktor tersebut, yang digit nya paling sedikit adalah 3 * 8 atau 4 * 6, sehingga function akan me-return 2.
+
+function digitPerkalianMinimum(angka) {
+  var digit = '';
+  var arr = [];
+  for (var i = 1; i <= angka; i++){
+    if(angka % i === 0){
+      var count = angka / i;
+      digit += i.toString() + count.toString() + '-';
+    }
+  }
+  var split = digit.split('-');
+  split.pop();
+  for(var j = 0; j < split.length; j++){
+    arr.push(split[j].length)
+  }
+  var min = Math.min.apply(null, arr);
+  return min;
+}
+
+// TEST CASES
+console.log(digitPerkalianMinimum(24)); // 2
+console.log(digitPerkalianMinimum(90)); // 3
+console.log(digitPerkalianMinimum(20)); // 2
+console.log(digitPerkalianMinimum(179)); // 4
+console.log(digitPerkalianMinimum(1)); // 2
+
+// Diberikan sebuah function urutkanAbjad(str) yang menerima satu parameter berupa string. Function tersebut akan mengembalikan string baru yang telah diubah urutan abjadnya dari a hingga z. Contohnya, halo akan menjadi ahlo. Kamu tidak perlu memikirkan apabila ada simbol ataupun angka didalam string tersebut.
+
+function urutkanAbjad(str) {
+  return str.split('').sort().join('');
+  }
+
+// TEST CASES
+console.log(urutkanAbjad('hello')); // 'ehllo'
+console.log(urutkanAbjad('truncate')); // 'acenrttu'
+console.log(urutkanAbjad('developer')); // 'deeeloprv'
+console.log(urutkanAbjad('software')); // 'aeforstw'
+console.log(urutkanAbjad('aegis')); // 'aegis'
+
+// Diberikan function tukarBesarKecil(kalimat) yang menerima satu parameter berupa string. Function akan me-return string tersebut dengan menukar karakter yang uppercase menjadi lowercase, dan sebaliknya. Spasi dan simbol diabaikan.
+
+function tukarBesarKecil(kalimat) {
+  var reverseCase = '';
+  
+  for (var i = 0; i < kalimat.length; ++i) {
+    var huruf = kalimat[i];
+    if (huruf === huruf.toUpperCase()) {
+      reverseCase += huruf.toLowerCase();
+    } else if (huruf === huruf.toLowerCase()) {
+      reverseCase += huruf.toUpperCase();
+    } else { 
+      reverseCase += huruf;
+    }
+  } return reverseCase;
+}
+
+// TEST CASES
+console.log(tukarBesarKecil('Hello World')); // "hELLO wORLD"
+console.log(tukarBesarKecil('I aM aLAY')); // "i Am Alay"
+console.log(tukarBesarKecil('My Name is Bond!!')); // "mY nAME IS bOND!!"
+console.log(tukarBesarKecil('IT sHOULD bE me')); // "it Should Be ME"
+console.log(tukarBesarKecil('001-A-3-5TrdYW')); // "001-a-3-5tRDyw"
+
+// Diberikan sebuah function checkAB(str) yang menerima satu parameter berupa string. function tersebut mengembalikan nilai true jika di dalam string tersebut terdapat karakter a dan b yang memiliki jarak 3 karakter lain minimal satu kali. Jika tidak ditemukan sama sekali, kembalikan nilai false.
+
+function checkAB(num) {
+    // you can only write your code here!
+    var arr=num.split(''),arr2=[];
+    for(var i=0;i<arr.length;i++){
+        if(arr[i]!==' '){
+            arr2.push(arr[i]);
+        }
+    }
+    for(var a=0;a<arr2.length;a++){
+        if(arr2[a]==='a'){
+            for(var b=a;b<=(a+3);b++){
+                if(arr2[b]==='b'){
+                    return true
+                }
+            }
+        }
+    }
+    return false;
+  } 
+
+// TEST CASES
+console.log(checkAB('lane borrowed')); // true
+console.log(checkAB('i am sick')); // false
+console.log(checkAB('you are boring')); // true
+console.log(checkAB('barbarian')); // true
+console.log(checkAB('bacon and meat')); // false
+
+
+
+// function mengelompokkanAngka(arr) {
+//   var kelompokangka=[]
+//   for(let i=0;i<3;i++){
+//     kelompokangka.push([])
+//   }
+  
+//   for(let i=0;i<arr.length;i++){
+//     if(arr[i]%2===0 && arr[i]%3 !== 0){
+//       kelompokangka[0].push(arr[i])
+//     }
+//     else if(arr[i]%2===1 && arr[i]%3 !== 0){
+//       kelompokangka[1].push(arr[i])
+//     }
+//     else if(arr[i]%3===0){
+//       kelompokangka[2].push(arr[i])
+//     }
+//   }
+//   return kelompokangka
+// }
+
+// // TEST CASES
+// console.log(mengelompokkanAngka([2, 4, 6])); // [ [2, 4], [], [6] ]
+// console.log(mengelompokkanAngka([1, 2, 3, 4, 5, 6, 7, 8, 9])); // [ [ 2, 4, 8 ], [ 1, 5, 7 ], [ 3, 6, 9 ] ]
+// console.log(mengelompokkanAngka([100, 151, 122, 99, 111])); // [ [ 100, 122 ], [ 151 ], [ 99, 111 ] ]
+// console.log(mengelompokkanAngka([])); // [ [], [], [] ]
+
+// function changeMe(arr) {
+//   var simpan=[]
+//   for(let i=0;i<arr.length;i++){
+//     var biodata={}
+//     biodata.firstName=arr[i][0]
+//     biodata.lastName=arr[i][1]
+//     biodata.gender = arr[i][2]
+//     if(arr[i][3]){
+//       biodata.age =2018-arr[i][3]
+//     }
+//     else{
+//       biodata.age='Invalid Birth Yea'
+//     }
+//     simpan.push(biodata)
+//   }
+//   return simpan
+// }
+
+// // TEST CASES
+// changeMe([['Christ', 'Evans', 'Male', 1982], ['Robert', 'Downey', 'Male']]);
+
+// function shoppingTime(memberId, money) {
+//   var Purchased=[]
+//   var uangawal=money
+//   if(memberId===''){
+//     return 'mohon maaf, toko X hanya berlaku untuk member saja'
+//   }
+//   else if(money<50000){
+//     return 'Mohon maaf, uang tidak cukup'
+//   }
+//   else if(money===undefined && memberId===undefined){
+//     return 'Mohon maaf, toko X hanya berlaku untuk member saja'
+//   }
+//   else{
+//     while(money>0){
+//       if(money>=1500000){
+//         Purchased.push('Sepatu Stacattu')
+//         money=money-1500000
+//       }
+//       else if(money>=500000){
+//         Purchased.push('Baju Zoro')
+//         money=money-500000
+//       }
+//       else if(money>=250000){
+//         Purchased.push('Baju H&N')
+//         money=money-250000
+//       }
+//       else if(money>=175000){
+//         Purchased.push('Sweater Uniklooh')
+//         money=money-175000
+//       }
+//       else if(money>=50000){
+//         Purchased.push('Casing Handphone')
+//         money=money-50000
+//         break;
+//       }
+//       else{
+//         break;
+//       }
+//     }
+//     var memberobj={
+//       memberid:memberId,
+//       money:uangawal,
+//       listPurchased:Purchased,
+//       changeMoney:money
+//     }
+//   }
+//   return memberobj
+// }
+
+// // TEST CASES
+// console.log(shoppingTime('1820RzKrnWn08', 2475000));
+//   //{ memberId: '1820RzKrnWn08',
+//   // money: 2475000,
+//   // listPurchased:
+//   //  [ 'Sepatu Stacattu',
+//   //    'Baju Zoro',
+//   //    'Baju H&N',
+//   //    'Sweater Uniklooh',
+//   //    'Casing Handphone' ],
+//   // changeMoney: 0 }
+// console.log(shoppingTime('82Ku8Ma742', 170000));
+// //{ memberId: '82Ku8Ma742',
+// // money: 170000,
+// // listPurchased:
+// //  [ 'Casing Handphone' ],
+// // changeMoney: 120000 }
+// console.log(shoppingTime('', 2475000)); //Mohon maaf, toko X hanya berlaku untuk member saja
+// console.log(shoppingTime('234JdhweRxa53', 15000)); //Mohon maaf, uang tidak cukup
+// console.log(shoppingTime()); ////Mohon maaf, toko X hanya berlaku untuk member saja
+
+function countProfit(shoppers) {
+  if(shoppers.length<1){
+    return shoppers
+  }
+  let listBarang = [ ['Sepatu Stacattu', 1500000, 10],
+                    ['Baju Zoro', 500000, 2],
+                    ['Sweater Uniklooh', 175000, 1]
+                  ];
+  var simpannamaspatu=[],simpannamabaju=[],simpannamasweater=[]
+  var totalbarang=0,profitspatu=0,profitbaju=0,profitsweater=0
+    for(var j=0;j<shoppers.length;j++){
+      if(shoppers[j]['product']==='Sepatu Stacattu'){
+        if(listBarang[0][2]-shoppers[j]['amount']>=0){
+          listBarang[0][2]= listBarang[0][2]-shoppers[j]['amount']
+          profitspatu=profitspatu+(shoppers[j]['amount']*1500000)
+          simpannamaspatu.push(shoppers[j].name)
+        }
+      }
+      else if(shoppers[j]['product']==='Baju Zoro'){
+        if(listBarang[1][2]-shoppers[j]['amount']>=0){
+          listBarang[1][2]= listBarang[1][2]-shoppers[j]['amount']
+          profitbaju=profitbaju+(shoppers[j]['amount']*500000)
+          simpannamabaju.push(shoppers[j].name)
+        }
+      }
+      else if(shoppers[j]['product']==='Sweater Uniklooh'){
+        if(listBarang[2][2]-shoppers[j]['amount']>=0){
+          listBarang[2][2]= listBarang[2][2]-shoppers[j]['amount']
+          profitsweater=profitsweater+(shoppers[j]['amount']*175000)
+          simpannamasweater.push(shoppers[j].name)
+        }
+      }
+    }
+    
+    var tampilarray=[{
+      product: 'Sepatu Stacattu',
+      shoppers: simpannamaspatu,
+      leftOver: listBarang[0][2],
+      totalProfit: profitspatu
+    },
+    {
+      product: 'Baju Zoro',
+      shoppers: simpannamabaju,
+      leftOver: listBarang[1][2],
+      totalProfit: profitbaju
+    },
+    {
+      product: 'Sweater Uniklooh',
+      shoppers: simpannamasweater,
+      leftOver: listBarang[2][2],
+      totalProfit: profitsweater
+    }]
+    return tampilarray
+}
+
+// TEST CASES
+console.log(countProfit([ {name: 'Windi', product: 'Sepatu Stacattu', amount: 2}, 
+                          {name: 'Vanessa', product: 'Sepatu Stacattu', amount: 3}, 
+                          {name: 'Rani', product: 'Sweater Uniklooh', amount: 2}]));
+//[ { product: 'Sepatu Stacattu',
+//   shoppers: [ 'Windi', 'Vanessa' ],
+//   leftOver: 5,
+//   totalProfit: 7500000 },
+// { product: 'Baju Zoro',
+//   shoppers: [],
+//   leftOver: 2,
+//   totalProfit: 0 },
+// { product: 'Sweater Uniklooh',
+//   shoppers: [],
+//   leftOver: 1,
+//   totalProfit: 0 } ]
+
+// console.log(countProfit([{name: 'Windi', product: 'Sepatu Stacattu', amount: 8}, 
+// {name: 'Vanessa', product: 'Sepatu Stacattu', amount: 10}, 
+// {name: 'Rani', product: 'Sweater Uniklooh', amount: 1}, 
+// {name: 'Devi', product: 'Baju Zoro', amount: 1}, 
+// {name: 'Lisa', product: 'Baju Zoro', amount: 1}]));
+// [ { product: 'Sepatu Stacattu',
+//     shoppers: [ 'Windi' ],
+//     leftOver: 2,
+//     totalProfit: 12000000 },
+//   { product: 'Baju Zoro',
+//     shoppers: [ 'Devi', 'Lisa' ],
+//     leftOver: 0,
+//     totalProfit: 1000000 },
+//   { product: 'Sweater Uniklooh',
+//     shoppers: [ 'Rani' ],
+//     leftOver: 0,
+//     totalProfit: 175000 } ]
+// console.log(countProfit([{name: 'Windi', product: 'Sepatu Naiki', amount: 5}]));
+// [ { product: 'Sepatu Stacattu',
+//     shoppers: [],
+//     leftOver: 10,
+//     totalProfit: 0 },
+//   { product: 'Baju Zoro',
+//     shoppers: [],
+//     leftOver: 2,
+//     totalProfit: 0 },
+//   { product: 'Sweater Uniklooh',
+//     shoppers: [],
+//     leftOver: 1,
+//     totalProfit: 0 } ]
+// console.log(countProfit([])); //[]
+
+
+function sorting (arrNumber) {
+    return arrNumber.sort (function(a,b) {
+        return a - b;
+    });
+}
+  
+function getTotal (arrNumber) {
+    var frequent = 0;
+    var largest = arrNumber [arrNumber.length - 1 ];
+    if (arrNumber == 0) {
+      return "''"; // UNTUK TEST CASE YANG TERAKHIR
+    } else {
+      for (var num of arrNumber) {
+        if (num === arrNumber [arrNumber.length - 1]) {
+          frequent = frequent + 1;
+        }
+      }
+    }
+    return 'angka paling besar adalah ' + largest + ' dan jumlah kemunculan sebanyak ' + frequent + ' kali';
+}
+  
+function mostFrequentLargestNumbers (arrNumber) {
+    var listSort = sorting (arrNumber);
+    var countHighest = getTotal (listSort);
+    return countHighest;
+}
+  
+console.log(mostFrequentLargestNumbers([2, 8, 4, 6, 8, 5, 8, 4]));
+//'angka paling besar adalah 8 dan jumlah kemunculan sebanyak 3 kali'
+
+console.log(mostFrequentLargestNumbers([122, 122, 130, 100, 135, 100, 135, 150]));
+//'angka paling besar adalah 150 dan jumlah kemunculan sebanyak 1 kali'
+  
+console.log(mostFrequentLargestNumbers([1, 1, 1, 1]));
+//'angka paling besar adalah 1 dan jumlah kemunculan sebanyak 4 kali'
+  
+console.log(mostFrequentLargestNumbers([]));
+//''
+
+/*Logic Challenge - Password Generator
+
+Diberikan function changeVocals, reverseWord, setLowerUpperCase, removeSpaces, dan passwordGenerator
+
+Pada function passwordGenerator implementasikan requirement dibawah ini untuk membuat password (harus berurutan):
+
+ 1. Ganti semua huruf vokal menggunakan function changeVocals dengan aturan huruf vokal yang diganti akan menjadi huruf setelah huruf vokal itu (ex: a -> b, i -> j, u -> v, e -> f, o -> p, A -> B, I -> J, U -> V, E -> F, O -> P)
+
+ 2. Balikkan/reverse kata yang sudah kita ganti huruf vokalnya menggunakan reverseWord
+
+ 3. Gunakan function setLowerUpperCase untuk mengganti huruf besar menjadi kecil dan sebaliknya
+
+ 4. Gunakan function removeSpaces untuk menghilangkan semua spasi di dalam string yang sudah
+  kita manipulasi
+
+### NOTE:
+Semua manipulasi string (changeVocals, reverseWord, setLowerUpperCase, removeSpaces) diletakkan di passwordGenerator dan return password-nya dari function ini juga
+*/
+
+function changeVocals(str) {
+  var vocal = [
+    ['a', 'b'],
+    ['e', 'f'],
+    ['i', 'j'],
+    ['o', 'p'],
+    ['u', 'v'],
+    ['A', 'B'],
+    ['E', 'F'],
+    ['I', 'J'],
+    ['O', 'P'],
+    ['U', 'V'],
+  ];
+  var alpabet = '';
+  var isFind = false;
+  for (var i = 0; i < str.length; i++) {
+    for (var j = 0; j < vocal.length; j++) {
+      if (str[i] === vocal[j][0]) {
+        alpabet += vocal[j][1];
+        isFind = true;
+      }
+    }
+    if (!isFind) {
+      alpabet += str[i];
+    }
+    isFind = false;
+  }
+  return alpabet;
+}
+
+function reverseWord(str) {
+  var newAlpabet = '';
+  for (var k = str.length - 1; k >= 0; k--) {
+    newAlpabet += str[k];
+  }
+  return newAlpabet;
+}
+
+function setLowerUpperCase(str) {
+  var LowerUpper = '';
+  for (var l = 0; l < str.length; l++) {
+    if (str[l] === str[l].toLowerCase()) {
+      LowerUpper += str[l].toUpperCase();
+    } else {
+      LowerUpper += str[l].toLowerCase();
+    }
+  }
+  return LowerUpper;
+}
+
+function removeSpaces(str) {
+  var removespace = '';
+  for (var m = 0; m < str.length; m++) {
+    if (str[m] === ' ') {
+      removespace += '';
+    } else {
+      removespace += str[m];
+    }
+  }
+  return removespace;
+}
+
+function passwordGenerator(name) {
+  if (name.length < 5) {
+    return 'Minimal karakter yang diinputkan adalah 5 karakter';
+  }
+
+  var alpabets = changeVocals(name);
+  var reverse = reverseWord(alpabets);
+  var LowUp = setLowerUpperCase(reverse);
+  var remove = removeSpaces(LowUp);
+  return remove;
+}
+
+console.log(passwordGenerator('Sergei Dragunov')); // 'VPNVGBRdJFGRFs'
+console.log(passwordGenerator('Dimitri Wahyudiputra')); // 'BRTVPJDVYHBwJRTJMJd'
+console.log(passwordGenerator('Alexei')); // 'JFXFLb'
+console.log(passwordGenerator('Alex')); // 'Minimal karakter yang diinputkan adalah 5 karakter'
+
+/*
+Seorang customer sedang makan di sebuah restaurant AYCE(All You Can Eat). Dia akan terus makan sampai waktu yang diberikan oleh restaurant tersebut habis. Setiap customer memesan/mengambil makanan dan memakan pesanannya maka waktu customer berkurang 15 menit. Begitu seterusnya sampai waktunya habis .Customer masih bisa memesan/mengambil makanan selama waktunya belum 0.
+
+Diberikan sebuah function makanTerusRekursif(waktu) yang menerima satu parameter berupa waktu. Function akan memproses jika waktu masih ada. Function akan mengembalikan/me-return berapa kali seorang customer memesan/mengambil makanan dalam waktu yang diberikan. Wajib menggunakan rekursif.
+
+Contoh:
+
+45 => 3
+
+100 => 7
+
+10 => 1
+*/
+function makanTerusRekursif(waktu) {
+  var makan = 0;
+  if(waktu === 0){
+    return 0;
+  } else if(waktu <= 15){
+    return 1;
+  } else {
+    var sisa = waktu - 15;
+    makan++;
+  }
+  return makan + makanTerusRekursif(sisa);
+  
+}
+
+// TEST CASES
+console.log(makanTerusRekursif(66)); // 5
+console.log(makanTerusRekursif(100)); // 7
+console.log(makanTerusRekursif(90)); // 6
+console.log(makanTerusRekursif(10)); // 1
+console.log(makanTerusRekursif(0)); // 0
+
+/*
+Diberikan sebuah function totalDigitRekursif(angka) yang menerima satu parameter berupa angka. 
+Function akan me-return nilai total dari digit tersebut dengan menambahkan satu per satu angka dari digit paling depan ke paling belakang. 
+Wajib menggunakan rekursif untuk berlatih rekursif! Disarankan untuk tidak menggunakan looping for untuk soal ini.
+
+Contoh:
+
+512, berarti outputnya adalah 8, karena 5 + 1 + 2 = 8. 1542, berarti outputnya adalah 12, karena 1 + 5 + 4 + 2 = 12.
+*/
+
+function totalDigitRekursif(angka) {
+  // you can only write your code here!
+  var digit = Number(String(angka).slice(0,1));
+  //console.log('digit' + digit);
+  angka = Number(String(angka).slice(1));
+  //console.log('angka' + angka);
+  if(! angka) {
+    return digit;
+  }
+  else {
+    return digit + totalDigitRekursif(angka);
+  }
+}
+
+// TEST CASES
+console.log(totalDigitRekursif(512)); // 8
+console.log(totalDigitRekursif(1542)); // 12
+console.log(totalDigitRekursif(5)); // 5
+console.log(totalDigitRekursif(21)); // 3
+console.log(totalDigitRekursif(11111)); // 5
+
+/* Kalo length nya 1 berhenti
+
+Jalan terus kalo length lebih dari satu
+array * array semuanya
+*/
+
+function kaliTerusRekursif(angka) {
+  var arr = angka.toString();
+  if (arr.length === 1) {
+    return Number(angka);
+  } else {
+    var jumlah = 1;
+    for (var i = 0; i < arr.length; i++) {
+      jumlah = jumlah * Number(arr[i]);
+    }
+    return kaliTerusRekursif(jumlah);
+  }
+}
+
+// TEST CASES
+console.log(kaliTerusRekursif(66)); // 8
+console.log(kaliTerusRekursif(3)); // 3
+console.log(kaliTerusRekursif(24)); // 8
+console.log(kaliTerusRekursif(654)); // 0
+console.log(kaliTerusRekursif(1231)); // 6
+
+// Open Box
+
+// Metode Penjumlahan dengan menggunakan Looping
+
+var boxes = [100000, 50000, 10000,5000,2000,1000,500];
+var money=0;
+
+for (var i=0; i<boxes.length; i++){
+  money+=boxes[i];
+}
+console.log (money);
+
+// Base on recursif
+// Jalankan openbox
+// saat kado sudah habis, hentikan openbox 
+// kalau kadonya masih ada,
+// ambil kadonya 1
+// ambil isinya
+// akumulasi isinya
+// jalankan openbox
+
+// metode rekursif ambil dari belakang
+
+function openBox1(boxes1){
+  console.log (boxes1);
+  
+  if(boxes1.length===0){
+    return 0;
+  } else {
+    var isiBox=boxes1[boxes1.length-1];
+    boxes1.pop();
+    return isiBox+openBox1(boxes1);
+  }
+}
+
+console.log(openBox1([100, 10, 500,50]));
+
+// metode rekursif ambil dari depan
+
+function openBox2(boxes2){
+  console.log (boxes2);
+  
+  if(boxes2.length===0){
+    return 0;
+  } else {
+    for (var i=0; i<boxes2.length; i++){
+    var isiBox=boxes2[i];
+    boxes2.shift();
+    return isiBox+openBox2(boxes2);
+    }
+  }
+}
+
+console.log(openBox2([100, 10, 500,50]));
+
+console.log('>>>>>>>');
+
+/*
+Logic Challenge - Faktorial (Rekursif)
+
+Diberikan sebuah function faktorialRekursif(angka) yang menerima satu parameter berupa angka. Function akan me-return hasil faktorial dari angka tersebut. Faktorial adalah pengalian sebuah angka dengan angka itu sendiri dikurangi dengan 1, berturut-turut hingga 1. Wajib menggunakan rekursif untuk berlatih rekursif!
+
+Contoh:
+
+3 faktorial = 3! = 3 * 2 * 1 = 6 4 faktorial = 4! = 4 * 3 * 2 * 1 = 24
+
+3!=3*2!
+2!=3*2*1!
+1!=3*2*1
+
+berati faktorial n => n*(n-1)*n(n-2)* ... *1
+
+*/
+
+function faktorialRekursif(angka) {
+  if(angka===1){
+    return 1;
+  } else {
+    return angka*faktorialRekursif(angka-1);
+  }
+}
+
+// TEST CASES
+// console.log(faktorialRekursif(3)); // 6
+// console.log(faktorialRekursif(4)); // 24
+console.log(faktorialRekursif(5)); // 120
+// console.log(faktorialRekursif(2)); // 2
+// console.log(faktorialRekursif(1)); // 1
+
+console.log('<<<<<<<');
+/*
+Logic Challenge - Total Digit (Rekursif)
+
+Diberikan sebuah function totalDigitRekursif(angka) yang menerima satu parameter berupa angka. Function akan me-return nilai total dari digit tersebut dengan menambahkan satu per satu angka dari digit paling depan ke paling belakang. Wajib menggunakan rekursif untuk berlatih rekursif! Disarankan untuk tidak menggunakan looping for untuk soal ini.
+
+Contoh:
+
+512, berarti outputnya adalah 8, karena 5 + 1 + 2 = 8. 1542, berarti outputnya adalah 12, karena 1 + 5 + 4 + 2 = 12.
+
+*/
+
+function totalDigitRekursif(angka) {
+
+  var angkaStr=String(angka);
+  
+  if(angkaStr.length===1){
+    return angka;
+  } else {
+    var front=Number(angkaStr[0]);
+    var remainder=Number(angkaStr.slice(1));
+   
+    return front+totalDigitRekursif(remainder);
+
+    }
+}
+
+
+// TEST CASES
+// console.log(totalDigitRekursif(512)); // 8
+console.log(totalDigitRekursif(1542)); // 12
+// console.log(totalDigitRekursif(5)); // 5
+// console.log(totalDigitRekursif(21)); // 3
+// console.log(totalDigitRekursif(11111)); // 5
+
+console.log('!!!!!!!');
+
+/*
+Logic Challenge - Kali Terus (Rekursif)
+
+Diberikan sebuah function kaliTerusRekursif(angka) yang menerima satu parameter berupa angka. Function akan memproses angka yang lebih dari satu digit menjadi satu digit dengan melakukan perkalian. Bila masih lebih dari satu digit, terus lakukan perkalian setiap digit-nya untuk pada akhirnya mendapatkan satu digit. Wajib menggunakan rekursif untuk berlatih rekursif, namun kamu boleh menggunakan looping juga disini.
+
+Contoh:
+
+3 => 3, karena sudah satu digit 24 => 8. Karena 24 dua digit, maka kita lakukan 2 * 4 = 8. 8 satu digit, maka hasilnya adalah 8. 654 => 0. Karena 654 tiga digit, maka lakukan 6 * 5 * 4 = 120. 120 tiga digit, maka lakukan 1 * 2 * 0 = 0. 0 satu digit, maka hasilnya adalah 0.
+
+*/
+
+function kaliTerusRekursif(angka) {
+  var angkaStr=String(angka);
+  
+  console.log(angkaStr);
+  console.log('.........');
+  
+  if(angkaStr.length===1){
+    return angka;
+  } else {
+    var kaliTerus = 1;
+    for (var i = 0; i < angkaStr.length; i++) {
+      kaliTerus = kaliTerus * Number(angkaStr[i]);
+      // console.log(angkaStr[i]);
+      // console.log('*******');
+      console.log(kaliTerus);
+      console.log('::::::');
+    }
+    return kaliTerusRekursif(kaliTerus);
+
+    }
+}
+
+
+// TEST CASES
+// console.log(kaliTerusRekursif(66)); // 8
+// console.log(kaliTerusRekursif(3)); // 3
+// console.log(kaliTerusRekursif(24)); // 8
+console.log(kaliTerusRekursif(654)); // 0
+// console.log(kaliTerusRekursif(1231)); // 6
+
+console.log('!!!!!!!');
+
+// Balik Kata
+
+function balikKata(kata){
+  if(kata.length===1){
+    return kata;
+  } else {
+    var belakang=kata[kata.length-1];
+    var potong=kata.slice(0, kata.length-1);
+    return belakang+balikKata(potong);
+  }
+}
+
+console.log(balikKata('ayamku'));
+console.log(balikKata('helo'));
+
+// Balik Kata palindrome
+
+function palindrome(kata){
+  var depan = kata[0];
+  var belakang=kata[kata.length-1];
+  
+  if(kata.length<=1){
+    return true;
+  }
+  
+  if(depan!==belakang){
+    return false;
+  } else {
+    var kataBaru=kata.slice(1, kata.length-1);
+    return palindrome(kataBaru);
+  }
+}
+
+console.log(palindrome('Kasur Rusak'));
+console.log(palindrome('KodoK'));
+
+
+
+
